@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import toast from 'react-hot-toast'
+import { toast } from 'react-toastify'
 import EmailIcon from '@mui/icons-material/Email'
 import PhoneIcon from '@mui/icons-material/Phone'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
@@ -23,7 +23,7 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
-    
+
     setTimeout(() => {
       toast.success('Message sent successfully! We\'ll get back to you soon.')
       setFormData({ name: '', email: '', subject: '', message: '' })
@@ -81,7 +81,7 @@ const Contact = () => {
           <div className="lg:col-span-2">
             <form onSubmit={handleSubmit} className="card p-8 space-y-6">
               <h2 className="text-2xl font-display font-bold text-gray-100 mb-2">Send us a Message</h2>
-              
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-gray-300 text-sm font-medium mb-2">Your Name</label>

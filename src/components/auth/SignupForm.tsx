@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { loginSuccess } from '../../store/slices/authSlice'
 import { closeAuthModal } from '../../store/slices/uiSlice'
-import toast from 'react-hot-toast'
+import { toast } from 'react-toastify'
 
 // Icons
 import PersonIcon from '@mui/icons-material/Person'

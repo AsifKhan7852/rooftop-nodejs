@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { loginSuccess } from '../../store/slices/authSlice'
-import toast from 'react-hot-toast'
+import { toast } from 'react-toastify'
 
 // Icons
 import PersonIcon from '@mui/icons-material/Person'

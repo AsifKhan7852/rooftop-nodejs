@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../../store/store'
 import { updateProfile, logout } from '../../store/slices/authSlice'
 import { useNavigate } from 'react-router-dom'
-import toast from 'react-hot-toast'
+import { toast } from 'react-toastify'
 
 // Icons
 import PersonIcon from '@mui/icons-material/Person'

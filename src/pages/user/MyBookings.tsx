@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../../store/store'
 import { cancelBooking } from '../../store/slices/bookingSlice'
-import toast from 'react-hot-toast'
+import { toast } from 'react-toastify'
 
 // Icons
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
@@ -110,7 +110,7 @@ const MyBookings = () => {
             key={status}
             onClick={() => setFilter(status)}
             className={`px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-all ${filter === status
-              ? 'bg-accent-500 text-surface-darker'
+              ? 'bg-accent-500 text-white'
               : 'bg-primary-700/50 text-gray-300 hover:bg-primary-700'
               }`}
           >

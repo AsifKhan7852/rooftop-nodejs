@@ -9,12 +9,11 @@ import AdminLayout from './layouts/AdminLayout'
 
 // Public Pages
 import Landing from './pages/public/Landing'
-import Login from './pages/public/Login'
-import Signup from './pages/public/Signup'
 import AboutUs from './pages/public/AboutUs'
 import Contact from './pages/public/Contact'
 import FAQ from './pages/public/FAQ'
 import Terms from './pages/public/Terms'
+import AuthRedirect from './components/auth/AuthRedirect'
 
 // User Dashboard Pages
 import UserDashboard from './pages/user/Dashboard'
@@ -51,8 +50,8 @@ function App() {
       {/* Public Routes */}
       <Route element={<PublicLayout />}>
         <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<AuthRedirect mode="login" />} />
+        <Route path="/signup" element={<AuthRedirect mode="signup" />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<FAQ />} />

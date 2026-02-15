@@ -2,7 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import { Toaster } from 'react-hot-toast'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import App from './App'
 import { store } from './store/store'
 import './index.css'
@@ -12,21 +13,16 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
       <BrowserRouter>
         <App />
-        <Toaster 
+        <ToastContainer
           position="top-right"
-          toastOptions={{
-            duration: 3000,
-            style: {
-              background: '#0f3a4d',
-              color: '#f3f4f6',
-              border: '1px solid rgba(13, 143, 175, 0.3)',
-            },
-            success: {
-              iconTheme: {
-                primary: '#f5a623',
-                secondary: '#0f3a4d',
-              },
-            },
+          autoClose={3000}
+          hideProgressBar={false}
+          closeOnClick
+          pauseOnHover
+          draggable
+          theme="dark"
+          style={{
+            fontSize: '14px',
           }}
         />
       </BrowserRouter>

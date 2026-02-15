@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import toast from 'react-hot-toast'
+import { toast } from 'react-toastify'
 
 // Icons
 import SearchIcon from '@mui/icons-material/Search'
@@ -76,7 +76,7 @@ const ManageBookings = () => {
 
   const filteredBookings = bookings.filter((booking) => {
     const matchesSearch = booking.user.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         booking.email.toLowerCase().includes(searchQuery.toLowerCase())
+      booking.email.toLowerCase().includes(searchQuery.toLowerCase())
     const matchesFilter = filter === 'all' || booking.status === filter
     return matchesSearch && matchesFilter
   })
@@ -132,11 +132,10 @@ const ManageBookings = () => {
             <button
               key={status}
               onClick={() => setFilter(status)}
-              className={`px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-all ${
-                filter === status
-                  ? 'bg-accent-500 text-surface-darker'
-                  : 'bg-primary-700/50 text-gray-300 hover:bg-primary-700'
-              }`}
+              className={`px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-all ${filter === status
+                ? 'bg-accent-500 text-white'
+                : 'bg-primary-700/50 text-gray-300 hover:bg-primary-700'
+                }`}
             >
               {status.charAt(0).toUpperCase() + status.slice(1)}
             </button>
@@ -145,7 +144,8 @@ const ManageBookings = () => {
       </div>
 
       {/* Bookings Table */}
-      <div className="card overflow-hidden">
+      {/* Desktop Table View */}
+      <div className="card overflow-hidden hidden md:block">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-primary-700/30">
@@ -180,10 +180,9 @@ const ManageBookings = () => {
                     Rs. {booking.amount.toLocaleString()}
                   </td>
                   <td className="p-4">
-                    <span className={`badge ${
-                      booking.paymentStatus === 'paid' ? 'badge-success' :
-                      booking.paymentStatus === 'refunded' ? 'badge-info' : 'badge-warning'
-                    }`}>
+                    <span className={`badge ${booking.paymentStatus === 'paid' ? 'badge-success' :
+                        booking.paymentStatus === 'refunded' ? 'badge-info' : 'badge-warning'
+                      }`}>
                       {booking.paymentStatus}
                     </span>
                   </td>
@@ -240,6 +239,95 @@ const ManageBookings = () => {
             <h3 className="text-xl font-semibold text-gray-100 mb-2">No bookings found</h3>
             <p className="text-gray-400">Try adjusting your search or filters</p>
           </div>
+        )}
+      </div>
+
+      {/* Mobile Card View */}
+      <div className="md:hidden space-y-4">
+        {filteredBookings.length === 0 ? (
+          <div className="card p-12 text-center">
+            <CalendarMonthIcon className="text-gray-600 text-5xl mb-4" />
+            <h3 className="text-xl font-semibold text-gray-100 mb-2">No bookings found</h3>
+            <p className="text-gray-400">Try adjusting your search or filters</p>
+          </div>
+        ) : (
+          filteredBookings.map((booking) => (
+            <div key={booking.id} className="card p-4">
+              <div className="flex items-start justify-between mb-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-primary-700 rounded-full flex items-center justify-center text-gray-300">
+                    <PersonIcon />
+                  </div>
+                  <div>
+                    <div className="text-gray-100 font-medium">{booking.user}</div>
+                    <div className="text-gray-500 text-xs">{booking.email}</div>
+                  </div>
+                </div>
+                <div className="relative">
+                  <button
+                    onClick={() => setOpenMenu(openMenu === booking.id ? null : booking.id)}
+                    className="p-2 rounded-lg hover:bg-primary-700/50 text-gray-400 hover:text-accent-400 transition-colors"
+                  >
+                    <MoreVertIcon />
+                  </button>
+                  {openMenu === booking.id && (
+                    <div className="absolute right-0 top-full mt-1 w-40 bg-surface-card border border-primary-700/50 rounded-lg shadow-card overflow-hidden z-10">
+                      {booking.status === 'pending' && (
+                        <button
+                          onClick={() => handleConfirm(booking.id)}
+                          className="w-full text-left px-4 py-2 text-gray-300 hover:bg-primary-700/50 flex items-center gap-2 text-sm"
+                        >
+                          <CheckCircleIcon fontSize="small" className="text-green-400" /> Confirm
+                        </button>
+                      )}
+                      {booking.status !== 'cancelled' && (
+                        <button
+                          onClick={() => handleCancel(booking.id)}
+                          className="w-full text-left px-4 py-2 text-gray-300 hover:bg-primary-700/50 flex items-center gap-2 text-sm"
+                        >
+                          <CancelIcon fontSize="small" className="text-red-400" /> Cancel
+                        </button>
+                      )}
+                      <button
+                        onClick={() => handleGenerateReceipt(booking.id)}
+                        className="w-full text-left px-4 py-2 text-gray-300 hover:bg-primary-700/50 flex items-center gap-2 text-sm"
+                      >
+                        <ReceiptIcon fontSize="small" className="text-accent-400" /> Receipt
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="space-y-2 mb-3">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-400">Date & Time</span>
+                  <div className="text-right">
+                    <div className="text-gray-100">{new Date(booking.date).toLocaleDateString()}</div>
+                    <div className="text-gray-500 text-xs">{booking.time}</div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-400">Amount</span>
+                  <span className="text-accent-400 font-medium">Rs. {booking.amount.toLocaleString()}</span>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-400">Payment</span>
+                  <span className={`badge ${booking.paymentStatus === 'paid' ? 'badge-success' :
+                      booking.paymentStatus === 'refunded' ? 'badge-info' : 'badge-warning'
+                    }`}>
+                    {booking.paymentStatus}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-400">Status</span>
+                  <span className={`badge ${getStatusBadge(booking.status)}`}>
+                    {booking.status}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))
         )}
       </div>
     </div>

@@ -61,7 +61,7 @@ const Reports = () => {
               key={p}
               onClick={() => setPeriod(p)}
               className={`px-4 py-2 rounded-lg font-medium transition-all ${period === p
-                ? 'bg-accent-500 text-surface-darker'
+                ? 'bg-accent-500 text-white'
                 : 'bg-primary-700/50 text-gray-300 hover:bg-primary-700'
                 }`}
             >

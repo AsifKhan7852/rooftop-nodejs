@@ -16,6 +16,9 @@ import VerifiedIcon from '@mui/icons-material/Verified'
 import SupportAgentIcon from '@mui/icons-material/SupportAgent'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
+import EmailIcon from '@mui/icons-material/Email'
+import PhoneIcon from '@mui/icons-material/Phone'
+import SendIcon from '@mui/icons-material/Send'
 
 
 const Landing = () => {
@@ -314,23 +317,127 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section id="contact" className="py-16 px-4 bg-gradient-to-br from-primary-800 via-primary-900 to-surface-darker relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMtOS45NDEgMC0xOCA4LjA1OS0xOCAxOHM4LjA1OSAxOCAxOCAxOCAxOC04LjA1OSAxOC0xOC04LjA1OS0xOC0xOC0xOHptMCAzMmMtNy43MzIgMC0xNC02LjI2OC0xNC0xNHM2LjI2OC0xNCAxNC0xNCAxNCA2LjI2OCAxNCAxNC02LjI2OCAxNC0xNCAxNHoiIGZpbGw9IiMxMGI5ODEiIGZpbGwtb3BhY2l0eT0iLjA1Ii8+PC9nPjwvc3ZnPg==')] opacity-50" />
 
-        <div className="max-w-3xl mx-auto text-center relative z-10">
-          <h2 className="text-2xl md:text-3xl font-display font-bold text-gray-100 mb-3">
-            Own a Rooftop Cricket Venue?
-          </h2>
-          <p className="text-sm text-gray-300 mb-6 max-w-xl mx-auto">
-            Join our platform and reach thousands of cricket enthusiasts. Manage your bookings effortlessly.
-          </p>
-          <button
-            onClick={() => dispatch(openAuthModal('signup'))}
-            className="btn-primary inline-flex items-center gap-2 text-sm px-6 py-3"
-          >
-            Register Your Venue <ArrowForwardIcon fontSize="small" />
-          </button>
+      {/* Contact Us Section */}
+      <section id="contact" className="py-16 px-4 bg-surface-darker">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-gray-100 mb-2">
+              Get in <span className="text-emerald-400">Touch</span>
+            </h2>
+            <p className="text-gray-400 text-sm max-w-2xl mx-auto">
+              Have questions or own a rooftop venue? We're here to help. Reach out to us anytime.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-6">
+            {/* Contact Info Cards */}
+            <div className="lg:col-span-1 space-y-4">
+              <a
+                href="mailto:support@rooftopcricket.pk"
+                className="card p-5 flex items-center gap-3 hover:border-emerald-500/50 transition-all group"
+              >
+                <div className="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500 group-hover:text-surface-darker transition-all">
+                  <EmailIcon />
+                </div>
+                <div>
+                  <h3 className="text-gray-400 text-xs">Email</h3>
+                  <p className="text-gray-100 font-medium text-sm">support@rooftopcricket.pk</p>
+                </div>
+              </a>
+
+              <a
+                href="tel:+923001234567"
+                className="card p-5 flex items-center gap-3 hover:border-emerald-500/50 transition-all group"
+              >
+                <div className="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500 group-hover:text-surface-darker transition-all">
+                  <PhoneIcon />
+                </div>
+                <div>
+                  <h3 className="text-gray-400 text-xs">Phone</h3>
+                  <p className="text-gray-100 font-medium text-sm">+92 300 1234567</p>
+                </div>
+              </a>
+
+              <div className="card p-5 flex items-center gap-3">
+                <div className="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-400">
+                  <LocationOnIcon />
+                </div>
+                <div>
+                  <h3 className="text-gray-400 text-xs">Office</h3>
+                  <p className="text-gray-100 font-medium text-sm">Karachi, Pakistan</p>
+                </div>
+              </div>
+
+              {/* CTA for venue owners */}
+              <div className="card p-5 bg-gradient-to-br from-emerald-500/10 to-primary-700/50 border-emerald-500/30">
+                <h3 className="text-emerald-400 font-semibold text-sm mb-2">Own a Rooftop Venue?</h3>
+                <p className="text-gray-300 text-xs mb-3">Join our platform and reach thousands of cricket enthusiasts.</p>
+                <button
+                  onClick={() => dispatch(openAuthModal('signup'))}
+                  className="w-full bg-emerald-500 hover:bg-emerald-400 text-surface-darker text-xs font-medium py-2 rounded-lg transition-all"
+                >
+                  Register Your Venue
+                </button>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="lg:col-span-2">
+              <form className="card p-6 space-y-4">
+                <h3 className="text-lg font-display font-bold text-gray-100 mb-2">Send us a Message</h3>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-gray-300 text-sm font-medium mb-2">Your Name</label>
+                    <input
+                      type="text"
+                      placeholder="Enter your name"
+                      className="input-field"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-gray-300 text-sm font-medium mb-2">Email Address</label>
+                    <input
+                      type="email"
+                      placeholder="Enter your email"
+                      className="input-field"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-gray-300 text-sm font-medium mb-2">Subject</label>
+                  <input
+                    type="text"
+                    placeholder="What's this about?"
+                    className="input-field"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-gray-300 text-sm font-medium mb-2">Message</label>
+                  <textarea
+                    placeholder="Write your message here..."
+                    className="input-field min-h-[120px] resize-none"
+                    rows={4}
+                    required
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="btn-primary flex items-center justify-center gap-2 w-full md:w-auto"
+                >
+                  Send Message <SendIcon fontSize="small" />
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </section>
     </div>

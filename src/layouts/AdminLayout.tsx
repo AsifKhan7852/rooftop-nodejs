@@ -17,7 +17,7 @@ const AdminLayout = () => {
   return (
     <div className="min-h-screen bg-surface-darker flex">
       <Sidebar variant="admin" />
-      <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarCollapsed ? 'ml-20' : 'ml-64'}`}>
+      <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarCollapsed ? 'md:ml-20' : 'md:ml-64'}`}>
         <DashboardHeader />
         <main className="flex-1 p-6 overflow-auto">
           <Outlet />

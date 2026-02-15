@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { loginSuccess, loginStart } from '../../store/slices/authSlice'
 import { closeAuthModal } from '../../store/slices/uiSlice'
 import { RootState } from '../../store/store'
-import toast from 'react-hot-toast'
+import { toast } from 'react-toastify'
 
 // Icons
 import EmailIcon from '@mui/icons-material/Email'

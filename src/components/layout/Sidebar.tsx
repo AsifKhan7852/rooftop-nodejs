@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store/store'
 import { toggleSidebarCollapse, setSidebarOpen } from '../../store/slices/uiSlice'
 import { logout } from '../../store/slices/authSlice'
-import toast from 'react-hot-toast'
+import { toast } from 'react-toastify'
 
 // Icons
 import SportsCricketIcon from '@mui/icons-material/SportsCricket'

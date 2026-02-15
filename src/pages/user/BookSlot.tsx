@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addBooking } from '../../store/slices/bookingSlice'
-import toast from 'react-hot-toast'
+import { toast } from 'react-toastify'
 
 // Icons
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -16,9 +16,9 @@ const BookSlot = () => {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  
+
   const selectedDate = searchParams.get('date') || new Date().toISOString().split('T')[0]
-  
+
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null)
   const [paymentMethod, setPaymentMethod] = useState('card')
   const [isProcessing, setIsProcessing] = useState(false)
@@ -57,7 +57,7 @@ const BookSlot = () => {
 
   const handlePayment = () => {
     setIsProcessing(true)
-    
+
     setTimeout(() => {
       const booking = {
         id: Date.now().toString(),
@@ -75,7 +75,7 @@ const BookSlot = () => {
         paymentStatus: 'paid' as const,
         createdAt: new Date().toISOString(),
       }
-      
+
       dispatch(addBooking(booking))
       toast.success('Booking confirmed successfully!')
       setIsProcessing(false)
@@ -128,13 +128,12 @@ const BookSlot = () => {
                     key={slot.id}
                     onClick={() => slot.available && setSelectedSlot(slot.id)}
                     disabled={!slot.available}
-                    className={`p-4 rounded-xl border-2 transition-all text-left ${
-                      selectedSlot === slot.id
-                        ? 'border-accent-500 bg-accent-500/10'
-                        : slot.available
+                    className={`p-4 rounded-xl border-2 transition-all text-left ${selectedSlot === slot.id
+                      ? 'border-accent-500 bg-accent-500/10'
+                      : slot.available
                         ? 'border-primary-600 hover:border-accent-500/50'
                         : 'border-primary-700 bg-primary-800/50 opacity-50 cursor-not-allowed'
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <AccessTimeIcon fontSize="small" className={selectedSlot === slot.id ? 'text-accent-400' : 'text-gray-500'} />
@@ -166,9 +165,8 @@ const BookSlot = () => {
               <div className="space-y-3">
                 <button
                   onClick={() => setPaymentMethod('card')}
-                  className={`w-full p-4 rounded-xl border-2 flex items-center gap-4 transition-all ${
-                    paymentMethod === 'card' ? 'border-accent-500 bg-accent-500/10' : 'border-primary-600 hover:border-accent-500/50'
-                  }`}
+                  className={`w-full p-4 rounded-xl border-2 flex items-center gap-4 transition-all ${paymentMethod === 'card' ? 'border-accent-500 bg-accent-500/10' : 'border-primary-600 hover:border-accent-500/50'
+                    }`}
                 >
                   <CreditCardIcon className={paymentMethod === 'card' ? 'text-accent-400' : 'text-gray-500'} />
                   <div className="text-left">
@@ -182,9 +180,8 @@ const BookSlot = () => {
 
                 <button
                   onClick={() => setPaymentMethod('wallet')}
-                  className={`w-full p-4 rounded-xl border-2 flex items-center gap-4 transition-all ${
-                    paymentMethod === 'wallet' ? 'border-accent-500 bg-accent-500/10' : 'border-primary-600 hover:border-accent-500/50'
-                  }`}
+                  className={`w-full p-4 rounded-xl border-2 flex items-center gap-4 transition-all ${paymentMethod === 'wallet' ? 'border-accent-500 bg-accent-500/10' : 'border-primary-600 hover:border-accent-500/50'
+                    }`}
                 >
                   <AccountBalanceWalletIcon className={paymentMethod === 'wallet' ? 'text-accent-400' : 'text-gray-500'} />
                   <div className="text-left">
@@ -248,7 +245,7 @@ const BookSlot = () => {
         <div className="lg:col-span-1">
           <div className="card p-6 sticky top-24">
             <h3 className="text-lg font-semibold text-gray-100 mb-4">Booking Summary</h3>
-            
+
             <img
               src={rooftop.image}
               alt={rooftop.name}

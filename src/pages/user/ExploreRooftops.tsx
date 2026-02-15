@@ -134,7 +134,7 @@ const ExploreRooftops = () => {
         </div>
         <button
           onClick={() => setShowFilters(!showFilters)}
-          className={`btn-secondary flex items-center gap-2 ${showFilters ? 'bg-accent-500 text-surface-darker' : ''}`}
+          className={`btn-secondary flex items-center gap-2 ${showFilters ? 'bg-accent-500 text-white' : ''}`}
         >
           <TuneIcon /> Filters
         </button>
@@ -214,8 +214,8 @@ const ExploreRooftops = () => {
                       setFilters({ ...filters, amenities: newAmenities })
                     }}
                     className={`text-xs px-2 py-1 rounded-full border transition-all ${filters.amenities.includes(amenity)
-                        ? 'bg-accent-500 text-surface-darker border-accent-500'
-                        : 'border-primary-600 text-gray-400 hover:border-accent-500'
+                      ? 'bg-accent-500 text-white border-accent-500'
+                      : 'border-primary-600 text-gray-400 hover:border-accent-500'
                       }`}
                   >
                     {amenity}

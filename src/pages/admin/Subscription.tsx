@@ -1,4 +1,3 @@
-
 import CheckIcon from '@mui/icons-material/Check'
 
 const Subscription = () => {

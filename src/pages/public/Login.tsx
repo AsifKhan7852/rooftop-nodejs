@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginSuccess, loginStart } from '../../store/slices/authSlice'
 import { RootState } from '../../store/store'
-import toast from 'react-hot-toast'
+import { toast } from 'react-toastify'
 
 // Icons
 import EmailIcon from '@mui/icons-material/Email'

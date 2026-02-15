@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import toast from 'react-hot-toast'
+import { toast } from 'react-toastify'
 
 // Icons
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
@@ -29,8 +29,8 @@ const ManageSlots = () => {
   ])
 
   const handleBlockSlot = (slotId: string) => {
-    setSlots(slots.map(slot => 
-      slot.id === slotId 
+    setSlots(slots.map(slot =>
+      slot.id === slotId
         ? { ...slot, status: slot.status === 'blocked' ? 'available' : 'blocked' }
         : slot
     ))
@@ -119,15 +119,14 @@ const ManageSlots = () => {
                     key={day}
                     onClick={() => !isPast && setSelectedDate(date)}
                     disabled={isPast}
-                    className={`aspect-square rounded-lg flex items-center justify-center text-sm transition-all ${
-                      isSelected
-                        ? 'bg-accent-500 text-surface-darker font-semibold'
+                    className={`aspect-square rounded-lg flex items-center justify-center text-sm transition-all ${isSelected
+                        ? 'bg-accent-500 text-white font-semibold'
                         : isToday
-                        ? 'bg-primary-700 text-accent-400 font-semibold'
-                        : isPast
-                        ? 'text-gray-600 cursor-not-allowed'
-                        : 'text-gray-300 hover:bg-primary-700/50'
-                    }`}
+                          ? 'bg-primary-700 text-accent-400 font-semibold'
+                          : isPast
+                            ? 'text-gray-600 cursor-not-allowed'
+                            : 'text-gray-300 hover:bg-primary-700/50'
+                      }`}
                   >
                     {day}
                   </button>
@@ -152,27 +151,25 @@ const ManageSlots = () => {
               {slots.map((slot) => (
                 <div
                   key={slot.id}
-                  className={`p-4 rounded-xl border-2 transition-all ${
-                    slot.status === 'booked'
+                  className={`p-4 rounded-xl border-2 transition-all ${slot.status === 'booked'
                       ? 'border-green-500/30 bg-green-500/10'
                       : slot.status === 'blocked'
-                      ? 'border-red-500/30 bg-red-500/10'
-                      : 'border-primary-600 hover:border-accent-500/50'
-                  }`}
+                        ? 'border-red-500/30 bg-red-500/10'
+                        : 'border-primary-600 hover:border-accent-500/50'
+                    }`}
                 >
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <AccessTimeIcon fontSize="small" className="text-gray-500" />
                       <span className="font-medium text-gray-100">{slot.time}</span>
                     </div>
-                    <span className={`badge ${
-                      slot.status === 'booked' ? 'badge-success' :
-                      slot.status === 'blocked' ? 'badge-error' : 'badge-info'
-                    }`}>
+                    <span className={`badge ${slot.status === 'booked' ? 'badge-success' :
+                        slot.status === 'blocked' ? 'badge-error' : 'badge-info'
+                      }`}>
                       {slot.status}
                     </span>
                   </div>
-                  
+
                   {slot.bookedBy && (
                     <p className="text-gray-400 text-sm mb-2">Booked by: {slot.bookedBy}</p>
                   )}
@@ -181,11 +178,10 @@ const ManageSlots = () => {
                     {slot.status !== 'booked' && (
                       <button
                         onClick={() => handleBlockSlot(slot.id)}
-                        className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-1 ${
-                          slot.status === 'blocked'
+                        className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-1 ${slot.status === 'blocked'
                             ? 'bg-green-500/20 text-green-400 hover:bg-green-500/30'
                             : 'bg-red-500/20 text-red-400 hover:bg-red-500/30'
-                        }`}
+                          }`}
                       >
                         {slot.status === 'blocked' ? (
                           <><CheckCircleIcon fontSize="small" /> Unblock</>
@@ -207,7 +203,7 @@ const ManageSlots = () => {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="card w-full max-w-md p-6 animate-slide-up">
             <h2 className="text-xl font-semibold text-gray-100 mb-4">Create Monthly Slots</h2>
-            
+
             <div className="space-y-4">
               <div>
                 <label className="block text-gray-300 text-sm font-medium mb-2">Select Month</label>

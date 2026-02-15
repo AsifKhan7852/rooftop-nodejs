@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import toast from 'react-hot-toast'
+import { toast } from 'react-toastify'
 
 // Icons
 import SearchIcon from '@mui/icons-material/Search'
@@ -73,15 +73,15 @@ const RegisteredUsers = () => {
 
   const filteredUsers = users.filter((user) => {
     const matchesSearch = user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         user.phone.includes(searchQuery)
+      user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.phone.includes(searchQuery)
     const matchesFilter = filter === 'all' || user.status === filter
     return matchesSearch && matchesFilter
   })
 
   const handleToggleBlock = (userId: string) => {
-    setUsers(users.map(user => 
-      user.id === userId 
+    setUsers(users.map(user =>
+      user.id === userId
         ? { ...user, status: user.status === 'blocked' ? 'active' : 'blocked' }
         : user
     ))
@@ -115,11 +115,10 @@ const RegisteredUsers = () => {
             <button
               key={status}
               onClick={() => setFilter(status)}
-              className={`px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-all ${
-                filter === status
-                  ? 'bg-accent-500 text-surface-darker'
-                  : 'bg-primary-700/50 text-gray-300 hover:bg-primary-700'
-              }`}
+              className={`px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-all ${filter === status
+                ? 'bg-accent-500 text-white'
+                : 'bg-primary-700/50 text-gray-300 hover:bg-primary-700'
+                }`}
             >
               {status.charAt(0).toUpperCase() + status.slice(1)}
             </button>
@@ -149,7 +148,7 @@ const RegisteredUsers = () => {
           <div key={user.id} className="card p-5 hover:border-accent-500/30 transition-all">
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full flex items-center justify-center text-surface-darker font-bold text-lg">
+                <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-surface-darker font-bold text-lg">
                   {user.name.charAt(0)}
                 </div>
                 <div>
@@ -182,11 +181,10 @@ const RegisteredUsers = () => {
               </span>
               <button
                 onClick={() => handleToggleBlock(user.id)}
-                className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                  user.status === 'blocked'
-                    ? 'bg-green-500/20 text-green-400 hover:bg-green-500/30'
-                    : 'bg-red-500/20 text-red-400 hover:bg-red-500/30'
-                }`}
+                className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${user.status === 'blocked'
+                  ? 'bg-green-500/20 text-green-400 hover:bg-green-500/30'
+                  : 'bg-red-500/20 text-red-400 hover:bg-red-500/30'
+                  }`}
               >
                 {user.status === 'blocked' ? (
                   <><CheckCircleIcon fontSize="small" /> Unblock</>
