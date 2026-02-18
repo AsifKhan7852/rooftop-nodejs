@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom'
 
 // Icons
 import SearchIcon from '@mui/icons-material/Search'
-import FilterListIcon from '@mui/icons-material/FilterList'
 import StarIcon from '@mui/icons-material/Star'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import CloseIcon from '@mui/icons-material/Close'
 import TuneIcon from '@mui/icons-material/Tune'
+
 
 const ExploreRooftops = () => {
   const [searchQuery, setSearchQuery] = useState('')

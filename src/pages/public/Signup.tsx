@@ -11,9 +11,8 @@ import PhoneIcon from '@mui/icons-material/Phone'
 import BusinessIcon from '@mui/icons-material/Business'
 import BadgeIcon from '@mui/icons-material/Badge'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
-import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
 import LockIcon from '@mui/icons-material/Lock'
+
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import GoogleIcon from '@mui/icons-material/Google'
@@ -26,7 +25,7 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -66,7 +65,7 @@ const Signup = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (formData.password !== formData.confirmPassword) {
       toast.error('Passwords do not match!')
       return
@@ -83,7 +82,7 @@ const Signup = () => {
         companyName: signupType === 'admin' ? formData.companyName : undefined,
         role: signupType as 'user' | 'admin',
       }
-      
+
       dispatch(loginSuccess(user))
       toast.success('Account created successfully!')
       navigate(signupType === 'admin' ? '/admin' : '/dashboard')
@@ -95,7 +94,7 @@ const Signup = () => {
     toast.success('Google signup coming soon!')
   }
 
-  const totalSteps = signupType === 'admin' ? 3 : 1
+
 
   return (
     <div className="min-h-[calc(100vh-56px)] flex items-center justify-center px-4 py-8">
@@ -113,21 +112,19 @@ const Signup = () => {
         <div className="flex bg-surface-card rounded-lg p-1 mb-5">
           <button
             onClick={() => { setSignupType('user'); setStep(1) }}
-            className={`flex-1 py-2 rounded-md text-sm font-medium transition-all ${
-              signupType === 'user'
+            className={`flex-1 py-2 rounded-md text-sm font-medium transition-all ${signupType === 'user'
                 ? 'bg-emerald-500 text-surface-darker'
                 : 'text-gray-400 hover:text-gray-200'
-            }`}
+              }`}
           >
             User Signup
           </button>
           <button
             onClick={() => { setSignupType('admin'); setStep(1) }}
-            className={`flex-1 py-2 rounded-md text-sm font-medium transition-all ${
-              signupType === 'admin'
+            className={`flex-1 py-2 rounded-md text-sm font-medium transition-all ${signupType === 'admin'
                 ? 'bg-emerald-500 text-surface-darker'
                 : 'text-gray-400 hover:text-gray-200'
-            }`}
+              }`}
           >
             Rooftop Owner
           </button>
@@ -139,11 +136,10 @@ const Signup = () => {
             {[1, 2, 3].map((s) => (
               <div key={s} className="flex items-center gap-3">
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-all ${
-                    step >= s
+                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-all ${step >= s
                       ? 'bg-emerald-500 text-surface-darker'
                       : 'bg-primary-700 text-gray-400'
-                  }`}
+                    }`}
                 >
                   {s}
                 </div>
@@ -288,7 +284,7 @@ const Signup = () => {
           {signupType === 'admin' && step === 1 && (
             <>
               <h2 className="text-base font-semibold text-gray-100">Personal Information</h2>
-              
+
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-gray-300 text-xs font-medium mb-1.5">Full Name *</label>
@@ -328,7 +324,7 @@ const Signup = () => {
           {signupType === 'admin' && step === 2 && (
             <>
               <h2 className="text-base font-semibold text-gray-100">Rooftop Details</h2>
-              
+
               <div>
                 <label className="block text-gray-300 text-xs font-medium mb-1.5">Rooftop Name *</label>
                 <div className="relative">
@@ -379,7 +375,7 @@ const Signup = () => {
           {signupType === 'admin' && step === 3 && (
             <>
               <h2 className="text-base font-semibold text-gray-100">Create Password</h2>
-              
+
               <div>
                 <label className="block text-gray-300 text-xs font-medium mb-1.5">Password *</label>
                 <div className="relative">

@@ -16,13 +16,13 @@ import LockIcon from '@mui/icons-material/Lock'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import GoogleIcon from '@mui/icons-material/Google'
-import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 
 const SignupForm = () => {
     const [signupType, setSignupType] = useState<'user' | 'admin'>('user')
     const [step, setStep] = useState(1)
     const [showPassword, setShowPassword] = useState(false)
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+    const [showConfirmPassword] = useState(false)
+
     const [isLoading, setIsLoading] = useState(false)
 
     const [formData, setFormData] = useState({
@@ -101,8 +101,8 @@ const SignupForm = () => {
                 <button
                     onClick={() => { setSignupType('user'); setStep(1) }}
                     className={`flex-1 py-2 rounded-md text-sm font-medium transition-all ${signupType === 'user'
-                            ? 'bg-emerald-500 text-surface-darker'
-                            : 'text-gray-400 hover:text-gray-200'
+                        ? 'bg-emerald-500 text-surface-darker'
+                        : 'text-gray-400 hover:text-gray-200'
                         }`}
                 >
                     User Signup
@@ -110,8 +110,8 @@ const SignupForm = () => {
                 <button
                     onClick={() => { setSignupType('admin'); setStep(1) }}
                     className={`flex-1 py-2 rounded-md text-sm font-medium transition-all ${signupType === 'admin'
-                            ? 'bg-emerald-500 text-surface-darker'
-                            : 'text-gray-400 hover:text-gray-200'
+                        ? 'bg-emerald-500 text-surface-darker'
+                        : 'text-gray-400 hover:text-gray-200'
                         }`}
                 >
                     Rooftop Owner
@@ -125,8 +125,8 @@ const SignupForm = () => {
                         <div key={s} className="flex items-center gap-3">
                             <div
                                 className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-all ${step >= s
-                                        ? 'bg-emerald-500 text-surface-darker'
-                                        : 'bg-primary-700 text-gray-400'
+                                    ? 'bg-emerald-500 text-surface-darker'
+                                    : 'bg-primary-700 text-gray-400'
                                     }`}
                             >
                                 {s}

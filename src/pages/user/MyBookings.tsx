@@ -7,18 +7,16 @@ import { toast } from 'react-toastify'
 // Icons
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import LocationOnIcon from '@mui/icons-material/LocationOn'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
 import EditIcon from '@mui/icons-material/Edit'
 import CancelIcon from '@mui/icons-material/Cancel'
 import ReceiptIcon from '@mui/icons-material/Receipt'
-import FilterListIcon from '@mui/icons-material/FilterList'
+
 
 const MyBookings = () => {
   const dispatch = useDispatch()
   const { bookings } = useSelector((state: RootState) => state.bookings)
   const [filter, setFilter] = useState('all')
-  const [openMenu, setOpenMenu] = useState<string | null>(null)
+
 
   // Mock bookings if empty
   const displayBookings = bookings.length > 0 ? bookings : [
@@ -77,7 +75,7 @@ const MyBookings = () => {
     if (confirm('Are you sure you want to cancel this booking?')) {
       dispatch(cancelBooking(id))
       toast.success('Booking cancelled successfully')
-      setOpenMenu(null)
+
     }
   }
 

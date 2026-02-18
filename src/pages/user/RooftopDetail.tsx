@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+
 
 // Icons
 import StarIcon from '@mui/icons-material/Star'
@@ -81,9 +82,8 @@ const RooftopDetail = () => {
             <button
               key={index}
               onClick={() => setSelectedImage(index)}
-              className={`rounded-lg overflow-hidden border-2 transition-all ${
-                selectedImage === index ? 'border-accent-500' : 'border-transparent'
-              }`}
+              className={`rounded-lg overflow-hidden border-2 transition-all ${selectedImage === index ? 'border-accent-500' : 'border-transparent'
+                }`}
             >
               <img src={image} alt="" className="w-full h-20 md:h-28 object-cover" />
             </button>
@@ -222,7 +222,7 @@ const RooftopDetail = () => {
         <div className="lg:col-span-1">
           <div className="card p-6 sticky top-24">
             <h3 className="text-lg font-semibold text-gray-100 mb-4">Book a Slot</h3>
-            
+
             {/* Owner Info */}
             <div className="flex items-center gap-3 p-3 bg-primary-700/30 rounded-lg mb-4">
               <img

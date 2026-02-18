@@ -3,8 +3,8 @@ import { toast } from 'react-toastify'
 
 // Icons
 import SearchIcon from '@mui/icons-material/Search'
-import FilterListIcon from '@mui/icons-material/FilterList'
 import PersonIcon from '@mui/icons-material/Person'
+
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import CancelIcon from '@mui/icons-material/Cancel'
 import ReceiptIcon from '@mui/icons-material/Receipt'
@@ -81,20 +81,21 @@ const ManageBookings = () => {
     return matchesSearch && matchesFilter
   })
 
-  const handleConfirm = (id: string) => {
+  const handleConfirm = (_id: string) => {
     toast.success('Booking confirmed!')
     setOpenMenu(null)
   }
 
-  const handleCancel = (id: string) => {
+  const handleCancel = (_id: string) => {
     toast.success('Booking cancelled!')
     setOpenMenu(null)
   }
 
-  const handleGenerateReceipt = (id: string) => {
+  const handleGenerateReceipt = (_id: string) => {
     toast.success('Receipt generated!')
     setOpenMenu(null)
   }
+
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -181,7 +182,7 @@ const ManageBookings = () => {
                   </td>
                   <td className="p-4">
                     <span className={`badge ${booking.paymentStatus === 'paid' ? 'badge-success' :
-                        booking.paymentStatus === 'refunded' ? 'badge-info' : 'badge-warning'
+                      booking.paymentStatus === 'refunded' ? 'badge-info' : 'badge-warning'
                       }`}>
                       {booking.paymentStatus}
                     </span>
@@ -314,7 +315,7 @@ const ManageBookings = () => {
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-gray-400">Payment</span>
                   <span className={`badge ${booking.paymentStatus === 'paid' ? 'badge-success' :
-                      booking.paymentStatus === 'refunded' ? 'badge-info' : 'badge-warning'
+                    booking.paymentStatus === 'refunded' ? 'badge-info' : 'badge-warning'
                     }`}>
                     {booking.paymentStatus}
                   </span>

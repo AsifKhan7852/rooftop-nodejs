@@ -2,12 +2,11 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 
 // Icons
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 import AddIcon from '@mui/icons-material/Add'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import BlockIcon from '@mui/icons-material/Block'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
-import DeleteIcon from '@mui/icons-material/Delete'
+
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 
@@ -120,12 +119,12 @@ const ManageSlots = () => {
                     onClick={() => !isPast && setSelectedDate(date)}
                     disabled={isPast}
                     className={`aspect-square rounded-lg flex items-center justify-center text-sm transition-all ${isSelected
-                        ? 'bg-accent-500 text-white font-semibold'
-                        : isToday
-                          ? 'bg-primary-700 text-accent-400 font-semibold'
-                          : isPast
-                            ? 'text-gray-600 cursor-not-allowed'
-                            : 'text-gray-300 hover:bg-primary-700/50'
+                      ? 'bg-accent-500 text-white font-semibold'
+                      : isToday
+                        ? 'bg-primary-700 text-accent-400 font-semibold'
+                        : isPast
+                          ? 'text-gray-600 cursor-not-allowed'
+                          : 'text-gray-300 hover:bg-primary-700/50'
                       }`}
                   >
                     {day}
@@ -152,10 +151,10 @@ const ManageSlots = () => {
                 <div
                   key={slot.id}
                   className={`p-4 rounded-xl border-2 transition-all ${slot.status === 'booked'
-                      ? 'border-green-500/30 bg-green-500/10'
-                      : slot.status === 'blocked'
-                        ? 'border-red-500/30 bg-red-500/10'
-                        : 'border-primary-600 hover:border-accent-500/50'
+                    ? 'border-green-500/30 bg-green-500/10'
+                    : slot.status === 'blocked'
+                      ? 'border-red-500/30 bg-red-500/10'
+                      : 'border-primary-600 hover:border-accent-500/50'
                     }`}
                 >
                   <div className="flex items-center justify-between mb-2">
@@ -164,7 +163,7 @@ const ManageSlots = () => {
                       <span className="font-medium text-gray-100">{slot.time}</span>
                     </div>
                     <span className={`badge ${slot.status === 'booked' ? 'badge-success' :
-                        slot.status === 'blocked' ? 'badge-error' : 'badge-info'
+                      slot.status === 'blocked' ? 'badge-error' : 'badge-info'
                       }`}>
                       {slot.status}
                     </span>
@@ -179,8 +178,8 @@ const ManageSlots = () => {
                       <button
                         onClick={() => handleBlockSlot(slot.id)}
                         className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-1 ${slot.status === 'blocked'
-                            ? 'bg-green-500/20 text-green-400 hover:bg-green-500/30'
-                            : 'bg-red-500/20 text-red-400 hover:bg-red-500/30'
+                          ? 'bg-green-500/20 text-green-400 hover:bg-green-500/30'
+                          : 'bg-red-500/20 text-red-400 hover:bg-red-500/30'
                           }`}
                       >
                         {slot.status === 'blocked' ? (

@@ -118,7 +118,8 @@ const Reports = () => {
         <div className="card p-6">
           <h3 className="text-lg font-semibold text-gray-100 mb-6">Most Popular Slots</h3>
           <div className="space-y-4">
-            {topSlots.map((slot, index) => (
+            {topSlots.map((slot) => (
+
               <div key={slot.time}>
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-gray-300 text-sm">{slot.time}</span>
