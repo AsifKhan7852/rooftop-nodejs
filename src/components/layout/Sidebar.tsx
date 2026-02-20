@@ -85,8 +85,8 @@ const Sidebar = ({ variant }: SidebarProps) => {
 
       <aside
         className={`fixed left-0 top-0 h-screen bg-surface-dark border-r border-primary-700/30 flex flex-col transition-all duration-300 z-40
-          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0
-          ${sidebarCollapsed ? 'md:w-16' : 'md:w-56'} w-64
+          ${sidebarOpen ? 'translate-x-0 w-64' : '-translate-x-full w-64'} md:translate-x-0
+          ${sidebarCollapsed ? 'md:w-16' : 'md:w-56'}
         `}
       >
         {/* Header */}

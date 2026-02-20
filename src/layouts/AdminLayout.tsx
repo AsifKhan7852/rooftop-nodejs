@@ -15,12 +15,14 @@ const AdminLayout = () => {
   // }
 
   return (
-    <div className="min-h-screen bg-surface-darker flex">
+    <div className="min-h-screen bg-surface-darker flex overflow-x-hidden">
       <Sidebar variant="admin" />
-      <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarCollapsed ? 'md:ml-20' : 'md:ml-64'}`}>
+      <div className={`flex-1 flex flex-col transition-all duration-300 overflow-hidden ${sidebarCollapsed ? 'md:ml-20' : 'md:ml-64'}`}>
         <DashboardHeader />
-        <main className="flex-1 p-6 overflow-auto">
-          <Outlet />
+        <main className="flex-1 p-6 overflow-auto overflow-x-hidden">
+          <div className="max-w-full w-full overflow-x-hidden">
+            <Outlet />
+          </div>
         </main>
       </div>
     </div>

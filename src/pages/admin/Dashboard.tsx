@@ -74,40 +74,75 @@ const AdminDashboard = () => {
         {/* Recent Bookings */}
         <div className="lg:col-span-2">
           <div className="card">
-            <div className="flex items-center justify-between p-5 border-b border-primary-700/30">
+            <div className="flex items-center justify-between p-4 sm:p-5 border-b border-primary-700/30">
               <h2 className="text-lg font-semibold text-gray-100">Recent Bookings</h2>
               <Link to="/admin/bookings" className="text-accent-400 text-sm hover:text-accent-300 flex items-center gap-1">
                 View All <ArrowForwardIcon fontSize="small" />
               </Link>
             </div>
-            <div className="overflow-x-auto">
-              <table className="w-full">
+            <div className="md:hidden space-y-3 p-4">
+              {/* Mobile card view */}
+              {recentBookings.map((booking) => (
+                <div key={booking.id} className="p-3 border border-primary-700/30 rounded-lg bg-surface-card">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-8 h-8 bg-primary-700 rounded-full flex items-center justify-center text-gray-300 flex-shrink-0">
+                      <PersonIcon fontSize="small" />
+                    </div>
+                    <span className="text-gray-100 text-sm font-medium truncate">{booking.user}</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    <div>
+                      <span className="text-gray-500">Date:</span>
+                      <div className="text-gray-100">{new Date(booking.date).toLocaleDateString()}</div>
+                    </div>
+                    <div>
+                      <span className="text-gray-500">Time:</span>
+                      <div className="text-gray-100">{booking.time}</div>
+                    </div>
+                    <div>
+                      <span className="text-gray-500">Amount:</span>
+                      <div className="text-accent-400 font-medium">Rs. {booking.amount.toLocaleString()}</div>
+                    </div>
+                    <div>
+                      <span className="text-gray-500">Status:</span>
+                      <div>
+                        <span className={`badge text-[0.6rem] ${booking.status === 'confirmed' ? 'badge-success' : 'badge-warning'}`}>
+                          {booking.status}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="hidden md:block overflow-x-auto">
+              <table className="w-full min-w-max">
                 <thead className="bg-primary-700/30">
                   <tr>
-                    <th className="text-left p-4 text-gray-400 font-medium text-sm">Customer</th>
-                    <th className="text-left p-4 text-gray-400 font-medium text-sm">Date & Time</th>
-                    <th className="text-left p-4 text-gray-400 font-medium text-sm">Amount</th>
-                    <th className="text-left p-4 text-gray-400 font-medium text-sm">Status</th>
+                    <th className="text-left p-3 text-gray-400 font-medium text-xs sm:text-sm min-w-[100px]">Customer</th>
+                    <th className="text-left p-3 text-gray-400 font-medium text-xs sm:text-sm min-w-[100px]">Date & Time</th>
+                    <th className="text-left p-3 text-gray-400 font-medium text-xs sm:text-sm min-w-[80px]">Amount</th>
+                    <th className="text-left p-3 text-gray-400 font-medium text-xs sm:text-sm min-w-[80px]">Status</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-primary-700/30">
                   {recentBookings.map((booking) => (
                     <tr key={booking.id} className="hover:bg-primary-700/20 transition-colors">
-                      <td className="p-4">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-primary-700 rounded-full flex items-center justify-center text-gray-300">
+                      <td className="p-3">
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          <div className="w-8 h-8 bg-primary-700 rounded-full flex items-center justify-center text-gray-300 flex-shrink-0">
                             <PersonIcon fontSize="small" />
                           </div>
-                          <span className="text-gray-100">{booking.user}</span>
+                          <span className="text-gray-100 text-xs sm:text-sm truncate max-w-[80px]">{booking.user}</span>
                         </div>
                       </td>
-                      <td className="p-4">
-                        <div className="text-gray-100">{new Date(booking.date).toLocaleDateString()}</div>
-                        <div className="text-gray-500 text-sm">{booking.time}</div>
+                      <td className="p-3">
+                        <div className="text-gray-100 text-xs sm:text-sm truncate">{new Date(booking.date).toLocaleDateString()}</div>
+                        <div className="text-gray-500 text-xs truncate">{booking.time}</div>
                       </td>
-                      <td className="p-4 text-accent-400 font-medium">Rs. {booking.amount.toLocaleString()}</td>
-                      <td className="p-4">
-                        <span className={`badge ${booking.status === 'confirmed' ? 'badge-success' : 'badge-warning'}`}>
+                      <td className="p-3 text-accent-400 font-medium text-xs sm:text-sm">Rs. {booking.amount.toLocaleString()}</td>
+                      <td className="p-3">
+                        <span className={`badge text-[0.6rem] sm:text-xs ${booking.status === 'confirmed' ? 'badge-success' : 'badge-warning'}`}>
                           {booking.status}
                         </span>
                       </td>
@@ -122,15 +157,42 @@ const AdminDashboard = () => {
         {/* Today's Slots */}
         <div className="lg:col-span-1">
           <div className="card">
-            <div className="flex items-center justify-between p-5 border-b border-primary-700/30">
+            <div className="flex items-center justify-between p-4 sm:p-5 border-b border-primary-700/30">
               <h2 className="text-lg font-semibold text-gray-100">Today's Slots</h2>
-              <span className="text-gray-500 text-sm">{new Date().toLocaleDateString()}</span>
+              <span className="text-gray-500 text-xs sm:text-sm">{new Date().toLocaleDateString()}</span>
             </div>
-            <div className="p-4 space-y-3">
+            <div className="space-y-2 sm:space-y-3 md:hidden p-4">
+              {/* Mobile card view */}
               {todaySlots.map((slot, index) => (
                 <div
                   key={index}
-                  className={`p-3 rounded-lg flex items-center justify-between ${slot.status === 'booked'
+                  className={`p-3 rounded-lg ${slot.status === 'booked'
+                      ? 'bg-green-500/10 border border-green-500/30'
+                      : slot.status === 'blocked'
+                        ? 'bg-red-500/10 border border-red-500/30'
+                        : 'bg-primary-700/30 border border-primary-600/30'
+                    }`}
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <AccessTimeIcon fontSize="small" className="text-gray-500 flex-shrink-0" />
+                    <span className="text-gray-100 text-sm font-medium">{slot.time}</span>
+                  </div>
+                  <div className="ml-6 text-sm">
+                    <div className="text-gray-500">Status:</div>
+                    <div className={`font-medium ${slot.status === 'booked' ? 'text-green-400' :
+                        slot.status === 'blocked' ? 'text-red-400' : 'text-gray-400'
+                      }`}>
+                      {slot.status === 'booked' ? slot.user : slot.status}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="hidden md:block p-3 sm:p-4 space-y-2 sm:space-y-3">
+              {todaySlots.map((slot, index) => (
+                <div
+                  key={index}
+                  className={`p-2 sm:p-3 rounded-lg flex items-center justify-between ${slot.status === 'booked'
                       ? 'bg-green-500/10 border border-green-500/30'
                       : slot.status === 'blocked'
                         ? 'bg-red-500/10 border border-red-500/30'
@@ -138,10 +200,10 @@ const AdminDashboard = () => {
                     }`}
                 >
                   <div className="flex items-center gap-2">
-                    <AccessTimeIcon fontSize="small" className="text-gray-500" />
-                    <span className="text-gray-100 text-sm">{slot.time}</span>
+                    <AccessTimeIcon fontSize="small" className="text-gray-500 flex-shrink-0" />
+                    <span className="text-gray-100 text-xs sm:text-sm truncate">{slot.time}</span>
                   </div>
-                  <span className={`text-xs font-medium ${slot.status === 'booked' ? 'text-green-400' :
+                  <span className={`text-[0.6rem] sm:text-xs font-medium text-center min-w-[60px] ${slot.status === 'booked' ? 'text-green-400' :
                       slot.status === 'blocked' ? 'text-red-400' : 'text-gray-400'
                     }`}>
                     {slot.status === 'booked' ? slot.user : slot.status}

@@ -139,33 +139,37 @@ const Reports = () => {
 
       {/* Recent Transactions */}
       <div className="card">
-        <div className="flex items-center justify-between p-5 border-b border-primary-700/30">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 sm:p-5 border-b border-primary-700/30 gap-3">
           <h3 className="text-lg font-semibold text-gray-100">Recent Transactions</h3>
           <button className="btn-ghost flex items-center gap-2 text-sm">
             <DownloadIcon fontSize="small" /> Export Report
           </button>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full">
+          <table className="w-full min-w-max">
             <thead className="bg-primary-700/30">
               <tr>
-                <th className="text-left p-4 text-gray-400 font-medium text-sm">Customer</th>
-                <th className="text-left p-4 text-gray-400 font-medium text-sm">Date</th>
-                <th className="text-left p-4 text-gray-400 font-medium text-sm">Type</th>
-                <th className="text-right p-4 text-gray-400 font-medium text-sm">Amount</th>
+                <th className="text-left p-3 text-gray-400 font-medium text-xs sm:text-sm min-w-[100px]">Customer</th>
+                <th className="text-left p-3 text-gray-400 font-medium text-xs sm:text-sm min-w-[80px]">Date</th>
+                <th className="text-left p-3 text-gray-400 font-medium text-xs sm:text-sm min-w-[80px]">Type</th>
+                <th className="text-right p-3 text-gray-400 font-medium text-xs sm:text-sm min-w-[100px]">Amount</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-primary-700/30">
               {recentTransactions.map((txn) => (
                 <tr key={txn.id} className="hover:bg-primary-700/20 transition-colors">
-                  <td className="p-4 text-gray-100">{txn.user}</td>
-                  <td className="p-4 text-gray-400">{new Date(txn.date).toLocaleDateString()}</td>
-                  <td className="p-4">
-                    <span className={`badge ${txn.type === 'booking' ? 'badge-success' : 'badge-warning'}`}>
+                  <td className="p-3 text-gray-100 text-xs sm:text-sm min-w-[100px]">
+                    <div className="truncate max-w-[100px]">{txn.user}</div>
+                  </td>
+                  <td className="p-3 text-gray-400 text-xs sm:text-sm min-w-[80px]">
+                    {new Date(txn.date).toLocaleDateString()}
+                  </td>
+                  <td className="p-3 min-w-[80px]">
+                    <span className={`badge text-[0.6rem] sm:text-xs ${txn.type === 'booking' ? 'badge-success' : 'badge-warning'}`}>
                       {txn.type}
                     </span>
                   </td>
-                  <td className={`p-4 text-right font-medium ${txn.amount > 0 ? 'text-green-400' : 'text-red-400'}`}>
+                  <td className={`p-3 text-right font-medium min-w-[100px] ${txn.amount > 0 ? 'text-green-400' : 'text-red-400'}`}>
                     {txn.amount > 0 ? '+' : ''}Rs. {Math.abs(txn.amount).toLocaleString()}
                   </td>
                 </tr>

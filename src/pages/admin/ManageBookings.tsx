@@ -117,7 +117,7 @@ const ManageBookings = () => {
       </div>
 
       {/* Search and Filters */}
-      <div className="flex flex-col md:flex-row gap-4">
+      <div className="flex flex-col gap-4">
         <div className="flex-1 relative">
           <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" />
           <input
@@ -128,12 +128,12 @@ const ManageBookings = () => {
             className="input-field pl-12 w-full"
           />
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {['all', 'confirmed', 'pending', 'cancelled'].map((status) => (
             <button
               key={status}
               onClick={() => setFilter(status)}
-              className={`px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-all ${filter === status
+              className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg font-medium text-xs sm:text-sm whitespace-nowrap transition-all flex-shrink-0 ${filter === status
                 ? 'bg-accent-500 text-white'
                 : 'bg-primary-700/50 text-gray-300 hover:bg-primary-700'
                 }`}
@@ -148,51 +148,51 @@ const ManageBookings = () => {
       {/* Desktop Table View */}
       <div className="card overflow-hidden hidden md:block">
         <div className="overflow-x-auto">
-          <table className="w-full">
+          <table className="w-full min-w-max">
             <thead className="bg-primary-700/30">
               <tr>
-                <th className="text-left p-4 text-gray-400 font-medium text-sm">Customer</th>
-                <th className="text-left p-4 text-gray-400 font-medium text-sm">Date & Time</th>
-                <th className="text-left p-4 text-gray-400 font-medium text-sm">Amount</th>
-                <th className="text-left p-4 text-gray-400 font-medium text-sm">Payment</th>
-                <th className="text-left p-4 text-gray-400 font-medium text-sm">Status</th>
-                <th className="text-left p-4 text-gray-400 font-medium text-sm">Actions</th>
+                <th className="text-left p-3 text-gray-400 font-medium text-xs sm:text-sm min-w-[100px]">Customer</th>
+                <th className="text-left p-3 text-gray-400 font-medium text-xs sm:text-sm min-w-[100px]">Date & Time</th>
+                <th className="text-left p-3 text-gray-400 font-medium text-xs sm:text-sm min-w-[80px]">Amount</th>
+                <th className="text-left p-3 text-gray-400 font-medium text-xs sm:text-sm min-w-[80px]">Payment</th>
+                <th className="text-left p-3 text-gray-400 font-medium text-xs sm:text-sm min-w-[80px]">Status</th>
+                <th className="text-left p-3 text-gray-400 font-medium text-xs sm:text-sm min-w-[100px]">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-primary-700/30">
               {filteredBookings.map((booking) => (
                 <tr key={booking.id} className="hover:bg-primary-700/20 transition-colors">
-                  <td className="p-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-primary-700 rounded-full flex items-center justify-center text-gray-300">
+                  <td className="p-3">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary-700 rounded-full flex items-center justify-center text-gray-300 flex-shrink-0">
                         <PersonIcon />
                       </div>
-                      <div>
-                        <div className="text-gray-100 font-medium">{booking.user}</div>
-                        <div className="text-gray-500 text-sm">{booking.email}</div>
+                      <div className="min-w-0 flex-1">
+                        <div className="text-gray-100 font-medium text-xs sm:text-sm truncate max-w-[80px]">{booking.user}</div>
+                        <div className="text-gray-500 text-xs truncate max-w-[80px]">{booking.email}</div>
                       </div>
                     </div>
                   </td>
-                  <td className="p-4">
-                    <div className="text-gray-100">{new Date(booking.date).toLocaleDateString()}</div>
-                    <div className="text-gray-500 text-sm">{booking.time}</div>
+                  <td className="p-3">
+                    <div className="text-gray-100 text-xs sm:text-sm truncate">{new Date(booking.date).toLocaleDateString()}</div>
+                    <div className="text-gray-500 text-xs truncate">{booking.time}</div>
                   </td>
-                  <td className="p-4 text-accent-400 font-medium">
+                  <td className="p-3 text-accent-400 font-medium text-xs sm:text-sm">
                     Rs. {booking.amount.toLocaleString()}
                   </td>
-                  <td className="p-4">
-                    <span className={`badge ${booking.paymentStatus === 'paid' ? 'badge-success' :
+                  <td className="p-3">
+                    <span className={`badge text-[0.6rem] sm:text-xs ${booking.paymentStatus === 'paid' ? 'badge-success' :
                       booking.paymentStatus === 'refunded' ? 'badge-info' : 'badge-warning'
                       }`}>
                       {booking.paymentStatus}
                     </span>
                   </td>
-                  <td className="p-4">
-                    <span className={`badge ${getStatusBadge(booking.status)}`}>
+                  <td className="p-3">
+                    <span className={`badge text-[0.6rem] sm:text-xs ${getStatusBadge(booking.status)}`}>
                       {booking.status}
                     </span>
                   </td>
-                  <td className="p-4">
+                  <td className="p-3">
                     <div className="relative">
                       <button
                         onClick={() => setOpenMenu(openMenu === booking.id ? null : booking.id)}
@@ -201,11 +201,11 @@ const ManageBookings = () => {
                         <MoreVertIcon />
                       </button>
                       {openMenu === booking.id && (
-                        <div className="absolute right-0 top-full mt-1 w-40 bg-surface-card border border-primary-700/50 rounded-lg shadow-card overflow-hidden z-10">
+                        <div className="absolute right-0 top-full mt-1 w-32 sm:w-40 bg-surface-card border border-primary-700/50 rounded-lg shadow-card overflow-hidden z-10">
                           {booking.status === 'pending' && (
                             <button
                               onClick={() => handleConfirm(booking.id)}
-                              className="w-full text-left px-4 py-2 text-gray-300 hover:bg-primary-700/50 flex items-center gap-2"
+                              className="w-full text-left px-2 py-1.5 sm:px-4 sm:py-2 text-gray-300 hover:bg-primary-700/50 flex items-center gap-1 sm:gap-2 text-[0.6rem] sm:text-sm"
                             >
                               <CheckCircleIcon fontSize="small" className="text-green-400" /> Confirm
                             </button>
@@ -213,14 +213,14 @@ const ManageBookings = () => {
                           {booking.status !== 'cancelled' && (
                             <button
                               onClick={() => handleCancel(booking.id)}
-                              className="w-full text-left px-4 py-2 text-gray-300 hover:bg-primary-700/50 flex items-center gap-2"
+                              className="w-full text-left px-2 py-1.5 sm:px-4 sm:py-2 text-gray-300 hover:bg-primary-700/50 flex items-center gap-1 sm:gap-2 text-[0.6rem] sm:text-sm"
                             >
                               <CancelIcon fontSize="small" className="text-red-400" /> Cancel
                             </button>
                           )}
                           <button
                             onClick={() => handleGenerateReceipt(booking.id)}
-                            className="w-full text-left px-4 py-2 text-gray-300 hover:bg-primary-700/50 flex items-center gap-2"
+                            className="w-full text-left px-2 py-1.5 sm:px-4 sm:py-2 text-gray-300 hover:bg-primary-700/50 flex items-center gap-1 sm:gap-2 text-[0.6rem] sm:text-sm"
                           >
                             <ReceiptIcon fontSize="small" className="text-accent-400" /> Receipt
                           </button>
