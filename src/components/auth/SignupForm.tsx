@@ -10,12 +10,13 @@ import PersonIcon from '@mui/icons-material/Person'
 import EmailIcon from '@mui/icons-material/Email'
 import PhoneIcon from '@mui/icons-material/Phone'
 import BusinessIcon from '@mui/icons-material/Business'
-import BadgeIcon from '@mui/icons-material/Badge'
+
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import LockIcon from '@mui/icons-material/Lock'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import GoogleIcon from '@mui/icons-material/Google'
+import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 
 const SignupForm = () => {
     const [signupType, setSignupType] = useState<'user' | 'admin'>('user')
@@ -32,7 +33,7 @@ const SignupForm = () => {
         password: '',
         confirmPassword: '',
         // Admin fields
-        cnic: '',
+
         companyName: '',
         location: '',
         address: '',
@@ -290,13 +291,7 @@ const SignupForm = () => {
                                     <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone number" className="input-field pl-9 text-sm py-2.5 w-full" required />
                                 </div>
                             </div>
-                            <div>
-                                <label className="block text-gray-300 text-xs font-medium mb-1.5">CNIC</label>
-                                <div className="relative">
-                                    <BadgeIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-lg" />
-                                    <input type="text" name="cnic" value={formData.cnic} onChange={handleChange} placeholder="XXXXX-XXXXXXX-X" className="input-field pl-9 text-sm py-2.5 w-full" />
-                                </div>
-                            </div>
+
                         </div>
 
                         <button type="button" onClick={handleNext} className="w-full btn-primary py-2.5 text-sm">Next</button>
@@ -336,6 +331,14 @@ const SignupForm = () => {
                             <div>
                                 <label className="block text-gray-300 text-xs font-medium mb-1.5">Price/hr</label>
                                 <input type="number" name="pricePerHour" value={formData.pricePerHour} onChange={handleChange} placeholder="1500" className="input-field text-sm py-2.5 w-full" />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label className="block text-gray-300 text-xs font-medium mb-1.5">Rooftop Images</label>
+                            <div className="border-2 border-dashed border-primary-600 rounded-lg p-4 text-center hover:border-emerald-500/50 transition-colors cursor-pointer">
+                                <CloudUploadIcon className="text-gray-500 text-2xl mb-1" />
+                                <p className="text-gray-400 text-xs">Drag & drop or click to upload</p>
                             </div>
                         </div>
 

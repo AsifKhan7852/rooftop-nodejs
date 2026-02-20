@@ -9,7 +9,7 @@ import PersonIcon from '@mui/icons-material/Person'
 import EmailIcon from '@mui/icons-material/Email'
 import PhoneIcon from '@mui/icons-material/Phone'
 import BusinessIcon from '@mui/icons-material/Business'
-import BadgeIcon from '@mui/icons-material/Badge'
+
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
@@ -25,7 +25,7 @@ const AdminSignup = () => {
     name: '',
     email: '',
     phone: '',
-    cnic: '',
+
     companyName: '',
     location: '',
     address: '',
@@ -37,7 +37,7 @@ const AdminSignup = () => {
   })
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -61,7 +61,7 @@ const AdminSignup = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (formData.password !== formData.confirmPassword) {
       toast.error('Passwords do not match!')
       return
@@ -78,7 +78,7 @@ const AdminSignup = () => {
         companyName: formData.companyName,
         role: 'admin' as const,
       }
-      
+
       dispatch(loginSuccess(user))
       toast.success('Rooftop registered successfully!')
       navigate('/admin')
@@ -103,19 +103,17 @@ const AdminSignup = () => {
           {[1, 2, 3].map((s) => (
             <div key={s} className="flex items-center gap-4">
               <div
-                className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all ${
-                  step >= s
+                className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all ${step >= s
                     ? 'bg-accent-500 text-surface-darker'
                     : 'bg-primary-700 text-gray-400'
-                }`}
+                  }`}
               >
                 {s}
               </div>
               {s < 3 && (
                 <div
-                  className={`w-16 h-1 rounded-full transition-all ${
-                    step > s ? 'bg-accent-500' : 'bg-primary-700'
-                  }`}
+                  className={`w-16 h-1 rounded-full transition-all ${step > s ? 'bg-accent-500' : 'bg-primary-700'
+                    }`}
                 />
               )}
             </div>
@@ -128,7 +126,7 @@ const AdminSignup = () => {
           {step === 1 && (
             <>
               <h2 className="text-xl font-semibold text-gray-100 mb-4">Personal Information</h2>
-              
+
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-gray-300 text-sm font-medium mb-2">Full Name *</label>
@@ -178,20 +176,6 @@ const AdminSignup = () => {
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-gray-300 text-sm font-medium mb-2">CNIC Number</label>
-                  <div className="relative">
-                    <BadgeIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
-                    <input
-                      type="text"
-                      name="cnic"
-                      value={formData.cnic}
-                      onChange={handleChange}
-                      placeholder="XXXXX-XXXXXXX-X"
-                      className="input-field pl-10"
-                    />
-                  </div>
-                </div>
               </div>
             </>
           )}
@@ -200,7 +184,7 @@ const AdminSignup = () => {
           {step === 2 && (
             <>
               <h2 className="text-xl font-semibold text-gray-100 mb-4">Rooftop Details</h2>
-              
+
               <div>
                 <label className="block text-gray-300 text-sm font-medium mb-2">Rooftop/Company Name *</label>
                 <div className="relative">
@@ -306,7 +290,7 @@ const AdminSignup = () => {
           {step === 3 && (
             <>
               <h2 className="text-xl font-semibold text-gray-100 mb-4">Create Password</h2>
-              
+
               <div>
                 <label className="block text-gray-300 text-sm font-medium mb-2">Password *</label>
                 <div className="relative">

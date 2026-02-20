@@ -9,7 +9,7 @@ import PersonIcon from '@mui/icons-material/Person'
 import EmailIcon from '@mui/icons-material/Email'
 import PhoneIcon from '@mui/icons-material/Phone'
 import BusinessIcon from '@mui/icons-material/Business'
-import BadgeIcon from '@mui/icons-material/Badge'
+
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import LockIcon from '@mui/icons-material/Lock'
 
@@ -33,7 +33,7 @@ const Signup = () => {
     password: '',
     confirmPassword: '',
     // Admin fields
-    cnic: '',
+
     companyName: '',
     location: '',
     address: '',
@@ -113,8 +113,8 @@ const Signup = () => {
           <button
             onClick={() => { setSignupType('user'); setStep(1) }}
             className={`flex-1 py-2 rounded-md text-sm font-medium transition-all ${signupType === 'user'
-                ? 'bg-emerald-500 text-surface-darker'
-                : 'text-gray-400 hover:text-gray-200'
+              ? 'bg-emerald-500 text-surface-darker'
+              : 'text-gray-400 hover:text-gray-200'
               }`}
           >
             User Signup
@@ -122,8 +122,8 @@ const Signup = () => {
           <button
             onClick={() => { setSignupType('admin'); setStep(1) }}
             className={`flex-1 py-2 rounded-md text-sm font-medium transition-all ${signupType === 'admin'
-                ? 'bg-emerald-500 text-surface-darker'
-                : 'text-gray-400 hover:text-gray-200'
+              ? 'bg-emerald-500 text-surface-darker'
+              : 'text-gray-400 hover:text-gray-200'
               }`}
           >
             Rooftop Owner
@@ -137,8 +137,8 @@ const Signup = () => {
               <div key={s} className="flex items-center gap-3">
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-all ${step >= s
-                      ? 'bg-emerald-500 text-surface-darker'
-                      : 'bg-primary-700 text-gray-400'
+                    ? 'bg-emerald-500 text-surface-darker'
+                    : 'bg-primary-700 text-gray-400'
                     }`}
                 >
                   {s}
@@ -307,13 +307,7 @@ const Signup = () => {
                     <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone number" className="input-field pl-9 text-sm py-2.5" required />
                   </div>
                 </div>
-                <div>
-                  <label className="block text-gray-300 text-xs font-medium mb-1.5">CNIC</label>
-                  <div className="relative">
-                    <BadgeIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-lg" />
-                    <input type="text" name="cnic" value={formData.cnic} onChange={handleChange} placeholder="XXXXX-XXXXXXX-X" className="input-field pl-9 text-sm py-2.5" />
-                  </div>
-                </div>
+
               </div>
 
               <button type="button" onClick={handleNext} className="w-full btn-primary py-2.5 text-sm">Next</button>
